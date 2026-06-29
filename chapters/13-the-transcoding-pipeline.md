@@ -34,7 +34,7 @@ flowchart LR
     DEC --> F["FILTER / SCALE<br/>raw → raw (resized, tonemapped)"]
     F --> E["ENCODE<br/>raw → compressed samples"]
     E --> M["MUX<br/>wrap → output container"]
-    M --> OUT([output bytes])
+    M --> OUT(["output bytes"])
     D -.->|audio track| M
 ```
 
@@ -125,7 +125,7 @@ flowchart TD
     EN1 --> MUX["MUX (per rung)"]
     EN2 --> MUX
     EN3 --> MUX
-    MUX --> OUT([1080p · 720p · 360p outputs])
+    MUX --> OUT(["1080p · 720p · 360p outputs"])
 ```
 
 Three things make this work, and each is worth understanding deeply.
@@ -313,7 +313,7 @@ flowchart TD
     COL --> ENG
     ENG --> RUN["demux · decode-once pump · per-rung scale+encode · mux"]
     RUN --> PROG[["uniform progress callback per rung"]]
-    RUN --> OUT([artifacts: files / segments + playlists])
+    RUN --> OUT(["artifacts: files / segments + playlists"])
 ```
 
 The power of the declarative split is that the *same engine* services every front-end. A CLI flag, an HTTP request body, a config file — they all parse into the *one* spec type, and the engine doesn't know or care which surface produced it. Add a new knob once (a field on the spec) and every front-end gets it. This is the difference between a *tool* (a CLI you shell out to) and a *service* (an engine you embed and drive programmatically).
@@ -376,7 +376,7 @@ flowchart TD
     RW1 --> MX["MUX (streaming: write segments / progressive mdat)"]
     RW2 --> MX
     RW3 --> MX
-    MX --> OUT([single-file MP4 per rung<br/>or CMAF/HLS package + playlists])
+    MX --> OUT(["single-file MP4 per rung<br/>or CMAF/HLS package + playlists"])
 ```
 
 Every arrow is a producer/consumer seam. Every `==>` fan-out is a zero-copy `Arc` clone. Every `[[bounded queue]]` is a back-pressure point that caps memory. The whole thing streams: at any instant only a sliding window of frames is resident. That's the engineered assembly line — and it's what lets one machine turn a multi-gigabyte 4K source into a five-rung adaptive ladder without buffering the river.

@@ -214,7 +214,7 @@ When you target a **specific file size or average bitrate** (VBR), the encoder f
 ```mermaid
 flowchart LR
     SRC[Source video] --> P1["Pass 1<br/>read whole file<br/>(output discarded)"]
-    P1 --> STATS[(Per-frame<br/>complexity stats)]
+    P1 --> STATS[("Per-frame<br/>complexity stats")]
     SRC --> P2["Pass 2<br/>read whole file<br/>encode for real"]
     STATS --> P2
     P2 --> OUT[Output at target size,<br/>bits allocated where needed]

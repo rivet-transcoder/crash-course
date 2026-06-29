@@ -148,10 +148,10 @@ flowchart TB
     end
     subgraph B420["4:2:0 — 2×2 block = 6 samples"]
         direction LR
-        r1["Y"] --- call["ONE Cb/Cr<br/>shared by all 4"]
-        r2["Y"] --- call
-        r3["Y"] --- call
-        r4["Y"] --- call
+        r1["Y"] --- CHR["ONE Cb/Cr<br/>shared by all 4"]
+        r2["Y"] --- CHR
+        r3["Y"] --- CHR
+        r4["Y"] --- CHR
     end
 ```
 

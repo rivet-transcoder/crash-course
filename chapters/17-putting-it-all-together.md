@@ -94,7 +94,7 @@ Trace one input frame all the way through:
 
 ```mermaid
 flowchart TD
-    IN([vacation.mov<br/>ProRes 422 HQ · 4K · 10-bit 4:2:2 · BT.2020 HLG · AAC]) --> DEMUX
+    IN(["vacation.mov<br/>ProRes 422 HQ · 4K · 10-bit 4:2:2 · BT.2020 HLG · AAC"]) --> DEMUX
 
     DEMUX["DEMUX the MOV<br/>(Ch 09 / 10)<br/>split into video samples + AAC track"]
     DEMUX -.->|"AAC track — passthrough, no re-encode (Ch 08)"| MUX
@@ -249,7 +249,7 @@ flowchart LR
     M["master.m3u8"] --> CHK["check CODECS<br/>(Ch 07/12)<br/>can I decode av01?"]
     CHK --> PICK["pick starting rung<br/>by BANDWIDTH (Ch 11)"]
     PICK --> FETCH["fetch init.mp4 + seg-*.m4s<br/>feed via MSE (Ch 12)"]
-    FETCH --> MEASURE{measure throughput<br/>vs buffer (Ch 11)}
+    FETCH --> MEASURE{"measure throughput<br/>vs buffer (Ch 11)"}
     MEASURE -->|"bandwidth up"| UP["step up a rung"]
     MEASURE -->|"bandwidth down"| DOWN["step down a rung"]
     UP --> FETCH
